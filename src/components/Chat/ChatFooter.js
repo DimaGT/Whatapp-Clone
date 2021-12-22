@@ -7,7 +7,15 @@ import {
   CheckCircle,
 } from "@material-ui/icons";
 
-export default function ChatFooter() {
+export default function ChatFooter(
+  input,
+  onChange,
+  sendMessage,
+  image,
+  user,
+  room,
+  roomId
+) {
   const [isRecording, setIsRecording] = useState(false);
   const btnIcons = (
     <>
@@ -32,10 +40,23 @@ export default function ChatFooter() {
   return (
     <div className="chat__footer">
       <form>
-        <input type="text" placeholder="Type a message" />
+        <input
+          value={input}
+          onChange={!isRecording ? onChange : null}
+          type="text"
+          placeholder="Type a message"
+        />
 
         {canRecord ? (
-          <button type="submit" className="send__btn">
+          <button
+            onClick={
+              input.tirm() || (input === "" && image)
+                ? sendMessage
+                : () => false
+            }
+            type="submit"
+            className="send__btn"
+          >
             {btnIcons}
           </button>
         ) : (
