@@ -4,6 +4,7 @@ import "./SidebarList.css";
 import SidebarListItem from "./SidebarListItem";
 
 export default function SidebarList({ title, data }) {
+  
   if (!data) {
     return (
       <div className="loader__container sidebar__loader">

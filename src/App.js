@@ -20,7 +20,7 @@ export default function App() {
       <div className="app__body">
         <Sidebar user={user} page={page} />
         <Route path={"/room/:roomId"}>
-          <Chat user={user} page={user} />
+          <Chat user={user} page={page} />
         </Route>
       </div>
     </div>
