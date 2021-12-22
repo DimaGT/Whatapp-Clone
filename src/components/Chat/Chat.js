@@ -11,11 +11,15 @@ import { AddPhotoAlternate, ArrowBack, MoreVert } from "@material-ui/icons";
 
 export default function Chat({ user, page }) {
   const [image, setImage] = useState(null);
+  const [input, setInput] = useState("");
   const [src, setSrc] = useState("");
-
   const { roomId } = useParams();
   const room = useRoom(roomId, user.uid);
   const history = useHistory();
+
+  const onChange = (e) => {
+    setInput(e.target.value)
+  }
 
   const showPreview = (e) => {
     const file = e.target.files[0];
@@ -30,9 +34,9 @@ export default function Chat({ user, page }) {
   };
 
   const closePreview = () => {
-    setSrc('')
-    setImage(null)
-  }
+    setSrc("");
+    setImage(null);
+  };
 
   return (
     <div className="chat">
@@ -80,7 +84,7 @@ export default function Chat({ user, page }) {
         </div>
       </div>
 
-      <MediaPreview src={src}closePreview={closePreview} />
+      <MediaPreview src={src} closePreview={closePreview} />
 
       <ChatFooter />
     </div>
