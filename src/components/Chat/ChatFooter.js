@@ -4,7 +4,7 @@ import {
   MicRounded,
   Send,
 } from "@material-ui/icons";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { createTimestamp, db, audioStorage } from "../../firebase";
 import { v4 as uuid } from "uuid";
 import "./ChatFooter.css";

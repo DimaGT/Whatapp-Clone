@@ -16,6 +16,8 @@ import Compressor from "compressorjs";
 export default function Chat({ user, page }) {
   const [image, setImage] = useState(null);
   const [input, setInput] = useState("");
+  const [isDeleting, setDeleting] = useState(false);
+  const [openMenu, setOpenMenu] = useState(null);
   const [src, setSrc] = useState("");
   const [audioId, setAudioId] = useState("");
 
@@ -140,10 +142,16 @@ export default function Chat({ user, page }) {
               <AddPhotoAlternate />
             </label>
           </IconButton>
-          <IconButton>
+          <IconButton onClick={(event) => setOpenMenu(event.currentTarget)}>
             <MoreVert />
           </IconButton>
-          <Menu id="menu" keepMounted open={false}>
+          <Menu
+            id="menu"
+            anchorEl={openMenu}
+            open={Boolean(openMenu)}
+            onClose={() => setOpenMenu(null)}
+            keepMounted
+          >
             <MenuItem>Delete Room</MenuItem>
           </Menu>
         </div>
