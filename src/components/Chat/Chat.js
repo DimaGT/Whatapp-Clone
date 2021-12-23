@@ -144,7 +144,7 @@ export default function Chat({ user, page }) {
 
   return (
     <div className="chat">
-      <div style={{ height: page.height }} className="chat__background" />
+      <div style={{ height: page.height , backgroundImage: 'url("/bg.png'}} className="chat__background" />
 
       <div className="chat__header">
         {page.isMobile && (
