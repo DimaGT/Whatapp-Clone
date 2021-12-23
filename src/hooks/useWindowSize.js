@@ -1,12 +1,12 @@
 import React from "react";
 
 export default function useWindowSize() {
-  const [windowSize, setWindowSize] = React.useState({
+  const [windowSize, setWindowSize] = useState({
     width: undefined,
     height: undefined,
   });
 
-  React.useEffect(() => {
+  useEffect(() => {
     function handleResize() {
       if (window.innerHeight > 768 && window.innerWidth > 1366) {
         const currentRatio = window.innerHeight / window.innerWidth;

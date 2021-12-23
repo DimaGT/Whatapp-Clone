@@ -17,7 +17,7 @@ export default function Chat({ user, page }) {
   const [image, setImage] = useState(null);
   const [input, setInput] = useState("");
   const [src, setSrc] = useState("");
-  const [audioId, setAudioId] = React.useState("");
+  const [audioId, setAudioId] = useState("");
 
   const { roomId } = useParams();
   const room = useRoom(roomId, user.uid);

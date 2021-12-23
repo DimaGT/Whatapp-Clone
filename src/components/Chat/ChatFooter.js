@@ -4,7 +4,7 @@ import {
   MicRounded,
   Send,
 } from "@material-ui/icons";
-import React from "react";
+import React, { useRef, useState } from "react";
 import { createTimestamp, db, audioStorage } from "../../firebase";
 import { v4 as uuid } from "uuid";
 import "./ChatFooter.css";
@@ -20,13 +20,13 @@ export default function ChatFooter({
   roomId,
   setAudioId,
 }) {
-  const [isRecording, setRecording] = React.useState(false);
-  const [duration, setDuration] = React.useState("00:00");
+  const [isRecording, setRecording] = useState(false);
+  const [duration, setDuration] = useState("00:00");
 
-  const timerInterval = React.useRef();
-  const recordingEl = React.useRef();
-  const record = React.useRef();
-  const inputRef = React.useRef();
+  const timerInterval = useRef();
+  const recordingEl = useRef();
+  const record = useRef();
+  const inputRef = useRef();
 
   async function startRecording(event) {
     event.preventDefault();
@@ -37,7 +37,7 @@ export default function ChatFooter({
     setAudioId("");
   }
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (isRecording) {
       recordingEl.current.style.opacity = "1";
       startTimer();

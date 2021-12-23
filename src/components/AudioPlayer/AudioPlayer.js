@@ -1,6 +1,6 @@
 import { CircularProgress } from "@material-ui/core";
 import { PauseRounded, PlayArrowRounded } from "@material-ui/icons";
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./AudioPlayer.css";
 
 export default function AudioPlayer({
@@ -10,19 +10,19 @@ export default function AudioPlayer({
   setAudioId,
   audioId,
 }) {
-  const [isPlaying, setPlaying] = React.useState(false);
-  const [isMediaLoaded, setMediaLoaded] = React.useState(false);
-  const [isLoaded, setLoaded] = React.useState(false);
-  const [isMetadataLoaded, setMetadataLoaded] = React.useState(false);
-  const [sliderValue, setSliderValue] = React.useState(0);
-  const [duration, setDuration] = React.useState("");
+  const [isPlaying, setPlaying] = useState(false);
+  const [isMediaLoaded, setMediaLoaded] = useState(false);
+  const [isLoaded, setLoaded] = useState(false);
+  const [isMetadataLoaded, setMetadataLoaded] = useState(false);
+  const [sliderValue, setSliderValue] = useState(0);
+  const [duration, setDuration] = useState("");
 
-  const totalDuration = React.useRef("");
-  const audio = React.useRef(new Audio(audioUrl));
-  const interval = React.useRef();
-  const isUploading = React.useRef(audioUrl === "uploading");
+  const totalDuration = useRef("");
+  const audio = useRef(new Audio(audioUrl));
+  const interval = useRef();
+  const isUploading = useRef(audioUrl === "uploading");
 
-  React.useEffect(() => {
+useEffect(() => {
     if (isUploading.current && audioUrl !== "uploading") {
       audio.current = new Audio(audioUrl);
       audio.current.load();
@@ -46,7 +46,7 @@ export default function AudioPlayer({
     });
   }
 
-  React.useEffect(() => {
+useEffect(() => {
     if (isLoaded) {
       getAudioDuration(audio.current).then(() => {
         setMetadataLoaded(true);
@@ -54,7 +54,7 @@ export default function AudioPlayer({
     }
   }, [isLoaded]);
 
-  React.useEffect(() => {
+useEffect(() => {
     if (isMetadataLoaded) {
       audio.current.addEventListener("canplaythrough", () => {
         if (!totalDuration.current) {
@@ -127,7 +127,7 @@ export default function AudioPlayer({
     }
   }
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (audioId !== id) {
       audio.current.pause();
       setPlaying(false);
