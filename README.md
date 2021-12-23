@@ -1,4 +1,6 @@
+A WhatsApp clone app using react, firebase and material-ui. 
 
-Service for writing various reviews and news, work with API, delete / add / edit news, authorization and registration, user settings, sorting by tags and more
+Here you can sign in with a google account, create a room, sign into an existing room, search for people, write to them, record voice messages, send pictures and much more. Everything happens in real time
+
 <img src="img.png">
 
