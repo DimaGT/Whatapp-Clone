@@ -3,6 +3,7 @@ import "./Chat.css";
 import { useParams } from "react-router-dom";
 import { v4 as uuid } from "uuid";
 import useRoom from "../../hooks/useRoom";
+import useChatMessages from "../../hooks/useChatMessages";
 import ChatMessages from "./ChatMessages";
 import ChatFooter from "./ChatFooter";
 import MediaPreview from "../MediaPreview/MediaPreview";
@@ -19,6 +20,7 @@ export default function Chat({ user, page }) {
   const { roomId } = useParams();
   const room = useRoom(roomId, user.uid);
   const history = useHistory();
+  const messages = useChatMessages(roomId);
 
   const onChange = (e) => {
     setInput(e.target.value);
@@ -146,7 +148,7 @@ export default function Chat({ user, page }) {
       </div>
       <div className="chat__body--container">
         <div className="chat__body" style={{ height: page.height - 68 }}>
-          <ChatMessages />
+          <ChatMessages messages={messages} user={user} roomId={roomId} />
         </div>
       </div>
 
