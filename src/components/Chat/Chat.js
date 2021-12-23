@@ -17,6 +17,8 @@ export default function Chat({ user, page }) {
   const [image, setImage] = useState(null);
   const [input, setInput] = useState("");
   const [src, setSrc] = useState("");
+  const [audioId, setAudioId] = React.useState("");
+
   const { roomId } = useParams();
   const room = useRoom(roomId, user.uid);
   const history = useHistory();
@@ -148,7 +150,13 @@ export default function Chat({ user, page }) {
       </div>
       <div className="chat__body--container">
         <div className="chat__body" style={{ height: page.height - 68 }}>
-          <ChatMessages messages={messages} user={user} roomId={roomId} />
+          <ChatMessages
+            messages={messages}
+            user={user}
+            roomId={roomId}
+            audioId={audioId}
+            setAudioId={setAudioId}
+          />
         </div>
       </div>
 
@@ -162,6 +170,7 @@ export default function Chat({ user, page }) {
         user={user}
         room={room}
         roomId={roomId}
+        setAudioId={setAudioId}
       />
     </div>
   );
